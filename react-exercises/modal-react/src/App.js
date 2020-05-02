@@ -23,20 +23,20 @@ function App() {
         displayChild={loginDisplay}
         close={() => setLoginDisplay('none')}
         heading="Login"
-        fotter="pesto login">
+        footer="pesto login">
         <div className="modal-body">
-          <form className="container">
+          <form className="container" >
             <div className="row">
               <div className="col-25">
-                <label for="fname">User Name</label>
+                <label htmlFor="fname">User Name</label>
               </div>
               <div className="col-75">
                 <input type="text" id="fname" name="username" placeholder="Username name.." />
               </div>
             </div>
-            <div class="row">
+            <div className="row">
               <div className="col-25">
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
               </div>
               <div className="col-75">
                 <input type="text" id="password" name="password" placeholder="password" />
@@ -53,20 +53,20 @@ function App() {
         displayChild={signUpDisplay}
         close={() => setSignUpDisplay('none')}
         heading="Sign UP"
-        fotter="pesto signUp">
+        footer="pesto signUp">
         <div className="modal-body">
           <form className="container">
             <div className="row">
               <div className="col-25">
-                <label for="fname">User Name</label>
+                <label htmlFor="fname">User Name</label>
               </div>
               <div className="col-75">
                 <input type="text" id="fname" name="username" placeholder="Username name.." />
               </div>
             </div>
-            <div class="row">
+            <div className="row">
               <div className="col-25">
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
               </div>
               <div className="col-75">
                 <input type="text" id="password" name="password" placeholder="password" />
@@ -74,7 +74,7 @@ function App() {
             </div>
             <div className="row">
               <div className="col-25">
-                <label for="cpassword">confirm Password</label>
+                <label htmlFor="cpassword">confirm Password</label>
               </div>
               <div className="col-75">
                 <input type="text" id="cpassword" name="cpassword" placeholder="cpassword" />

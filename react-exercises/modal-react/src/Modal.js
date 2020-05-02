@@ -3,6 +3,7 @@ import './App.css';
 
 
 function Modal(props) {
+    
     const onKeyDown = (event) => {
         let modal = document.querySelector('.modal');
         let focusableElementsString = `a[href], area[href], input:not([disabled]), button:not([disabled]), 
@@ -13,6 +14,7 @@ function Modal(props) {
 
         let firstElement = focusableElements[0];
         let lastElement = focusableElements[focusableElements.length - 1];
+
 
         if (!focusableElements.includes(document.activeElement)) {
             firstElement.focus();
@@ -37,6 +39,11 @@ function Modal(props) {
         }
     }
 
+    useEffect(() => {
+        document.onkeydown = onKeyDown;
+        
+      })
+  
     return (
         <div className="modal" style={{display : props.displayChild}}  >
             <div className="modal-content">
@@ -46,7 +53,7 @@ function Modal(props) {
                 </div>
                 {props.children}
                 <div className="modal-footer">
-                    <h3>{props.footer}</h3>
+                    <h6>{props.footer}</h6>
                 </div>
             </div>
         </div>
