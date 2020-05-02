@@ -1,103 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 
 function Modal(props) {
-    // Declare a new state variable, which we'll call "count"
-    console.log(props.login,props.signup,"props");
+    const onKeyDown = (event) => {
+        let modal = document.querySelector('.modal');
+        let focusableElementsString = `a[href], area[href], input:not([disabled]), button:not([disabled]), 
+                                    iframe, object, embed, [tabindex="0"], [contendeditable]`;
 
-    const [loginDisplay, setLoginDisplay] = useState('none');
-    const [signUpDisplay, setSignUpDisplay] = useState('none');
-    
+        let focusableElements = modal.querySelectorAll(focusableElementsString);
+        focusableElements = Array.prototype.slice.call(focusableElements);
+
+        let firstElement = focusableElements[0];
+        let lastElement = focusableElements[focusableElements.length - 1];
+
+        if (!focusableElements.includes(document.activeElement)) {
+            firstElement.focus();
+        }
+
+        if (event.keyCode === 9) {
+            if (event.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    event.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+
+        if (event.keyCode === 27) {
+            props.onCancel();
+        }
+    }
 
     return (
-
-        <div>
-            <div className="header">
-
-                <button onClick={() => setLoginDisplay('block')}>login</button>
-                <button onClick={() => setSignUpDisplay('block')}>signup</button>
-            </div>
-            
-            <div className="modal" style={{ display: signUpDisplay }} >
-
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <span className="close" onClick={() => setSignUpDisplay('none')}>&times;</span>
-                        <h2>Sign Up</h2>
-                    </div>
-                    <div className="modal-body">
-                        <form className="container">
-                        <div className="row">
-                            <div className="col-25">
-                            <label for="fname">User Name</label>
-                            </div>
-                            <div className="col-75">
-                                <input type="text" id="fname" name="username" placeholder="Username name.."/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div className="col-25">
-                            <label for="password">Password</label>
-                            </div>
-                            <div className="col-75">
-                                <input type="text" id="password" name="password" placeholder="password"/>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-25">
-                            <label for="cpassword">confirm Password</label>
-                            </div>
-                            <div className="col-75">
-                                <input type="text" id="cpassword" name="cpassword" placeholder="cpassword"/>
-                            </div>
-                        </div>
-                            <div className="row">
-                                <input className="col-75" type="submit" value="Register" />
-                            </div>
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                        <h6>Pesto project</h6>
-                    </div>
+        <div className="modal" style={{display : props.displayChild}}  >
+            <div className="modal-content">
+                <div className="modal-header">
+                    <span className="close" onClick={props.close}>&times;</span>
+                    <h2>{props.heading}</h2>
                 </div>
-
-            </div>
-            <div className="modal" style={{ display: loginDisplay }} >
-
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <span className="close" onClick={() => setLoginDisplay('none')}>&times;</span>
-                        <h2>login</h2>
-                    </div>
-                    <div className="modal-body">
-                    <form className="container">
-                        <div className="row">
-                            <div className="col-25">
-                            <label for="fname">User Name</label>
-                            </div>
-                            <div className="col-75">
-                                <input type="text" id="fname" name="username" placeholder="Username name.."/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div className="col-25">
-                            <label for="password">Password</label>
-                            </div>
-                            <div className="col-75">
-                                <input type="text" id="password" name="password" placeholder="password"/>
-                            </div>
-                        </div>
-                            <div className="row">
-                                <input className="col-75" type="submit" value="Submit" />
-                            </div>
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                        <h3>Modal Footer</h3>
-                    </div>
+                {props.children}
+                <div className="modal-footer">
+                    <h3>{props.footer}</h3>
                 </div>
-
             </div>
         </div>
     );
