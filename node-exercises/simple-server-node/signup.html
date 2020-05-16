@@ -8,40 +8,35 @@
   </head>
   <body>
     <div class="main">
-      <h1>SignUp Form</h1>
       <div class="row-signup">
         <div class="form-p">
-          <form>
-            <input
-              class="text"
-              type="text"
-              placeholder="Name"
-              name="Name"
-              required
-            />
-            <input
-              class="text"
-              type="text"
-              placeholder="Email"
-              name="Email"
-              required
-            />
-            <input
-              class="text"
-              type="text"
-              placeholder="Username"
-              name="Username"
-              required
-            />
-            <input
-              class="text"
-              type="password"
-              placeholder="Password"
-              name="Password"
-              required
-            />
-            <input type="submit" value="Submit" />
-          </form>
+          <div class="contact-wrapper">
+            <header class="login-cta">
+              <h2>Signup</h2>
+            </header>
+            <form autocomplete="off">
+              <div class="form-row">
+                <input type="text" name="FullName" required>
+                <span>Name</span>
+              </div>
+              <div class="form-row">
+                <input type="email" name="Email" required>
+                <span>Email</span>
+              </div>
+              <div class="form-row">
+                <input type="text" name="Username" required>
+                <span>Username</span>
+              </div>
+              <div class="form-row">
+                <input type="password" name="Password" required>
+                <span>Password</span>
+              </div>
+              <div class="form-row"></div>
+              <div class="form-row">
+                <button type="submit">Create Account!</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
